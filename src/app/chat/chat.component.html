@@ -1,0 +1,48 @@
+<!-- This is an example component -->
+<div class="container mx-auto shadow-lg rounded-lg">
+
+  <div class="flex flex-row justify-between bg-white">
+
+    <div class="flex flex-col w-2/5 border-r-2 overflow-y-auto">
+
+      <div
+        class="flex flex-row py-4 px-2 justify-center items-center border-b-2"
+      >
+
+
+        <div class="flex flex-row py-4 px-2 items-center border-b-2">
+          <div class="w-full">
+            <div class="text-lg font-semi-bold">Chat For All Users</div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-row py-4 px-2 items-center border-2 text-black" *ngFor="let message of messages">
+
+            {{ message.owner }} said: {{ message.text }}
+
+      </div>
+      <div class="flex flex-row py-4 px-2 items-center border-2 text-black"
+        *ngFor="let chatMessage of webSocketService.chatMessages" >
+        <span class="text-black">
+       {{chatMessage.name!}}  said: {{chatMessage.message}}</span>
+      </div>
+
+      <form (ngSubmit)="sendMessage!(sendForm)" #sendForm ="ngForm">
+        <div class="py-5">
+          <input
+            class="w-full bg-gray-300 py-5 px-3 rounded-xl"
+            type="text"
+            name="message"
+            placeholder="type your message here..."
+            ngModel
+          />
+        </div>
+      <button type="submit" class="border-2 bg-info bg-opacity-25" > SEND MESSAGE </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
