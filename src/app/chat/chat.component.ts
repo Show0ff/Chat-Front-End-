@@ -1,11 +1,10 @@
-import {Component,OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {WebSocketService} from "../services/web-socket.service";
 import {NgForm} from "@angular/forms";
 import {ChatMessage} from "../models/chatMessage";
 import {GetNameService} from "../services/getNameService";
 import {ChatHistoryService} from "../services/chat-history.service";
 import {Message} from "../models/message";
-import {User} from "../models/user";
 
 @Component({
   selector: 'app-chat',
@@ -22,9 +21,8 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   message: Message[]
 
-  user: User[]
 
-  messages: { text: string, owner: string }[] = [];
+  messages: Message[] = [];
 
 
   ngOnInit(): void {
@@ -35,10 +33,11 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
 
-  public initChatHistory() {
-    this.chatHistory.getHistory().subscribe((messages: Message[]) => {
-      messages.forEach((message: Message) => {
-        this.messages.push({text: message.text, owner: message.ownerOfMessage.login});
+  initChatHistory(): void {
+    this.chatHistory.getHistory().subscribe((history: Message[]) => {
+      const last10Messages = history.slice(-10);
+      this.messages = last10Messages.map((message: Message) => {
+        return new Message(message.text, { login: message.ownerOfMessage.login, password: '' });
       });
     });
   }
@@ -56,7 +55,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   public setNameForChat() {
     this.getNameService.getName().subscribe(s => {
       console.log(s)
-        this.userName = s
+      this.userName = s
     })
   }
 

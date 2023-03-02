@@ -17,6 +17,11 @@ export class LoginMenuComponent implements OnInit {
 
   }
 
+  ngOnInit(): void {
+
+    }
+
+
   chat: ChatComponent
 
 
@@ -54,9 +59,6 @@ export class LoginMenuComponent implements OnInit {
     }
   }
 
-
-  ngOnInit(): void {
-  }
 
 
 }

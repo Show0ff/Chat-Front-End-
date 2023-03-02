@@ -18,7 +18,7 @@
       </div>
       <div class="flex flex-row py-4 px-2 items-center border-2 text-black" *ngFor="let message of messages">
 
-            {{ message.owner }} said: {{ message.text }}
+            {{ message.ownerOfMessage.login}} said: {{ message.text }}
 
       </div>
       <div class="flex flex-row py-4 px-2 items-center border-2 text-black"
