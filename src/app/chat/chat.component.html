@@ -1,46 +1,39 @@
-<!-- This is an example component -->
+
 <div class="container mx-auto shadow-lg rounded-lg">
 
-  <div class="flex flex-row justify-between bg-white">
+  <div
+    class="flex flex-row py-1 px-1 justify-center border-b-2">
 
-    <div class="flex flex-col w-2/5 border-r-2 overflow-y-auto">
-
-      <div
-        class="flex flex-row py-4 px-2 justify-center items-center border-b-2"
-      >
-
-
-        <div class="flex flex-row py-4 px-2 items-center border-b-2">
-          <div class="w-full">
-            <div class="text-lg font-semi-bold">Chat For All Users</div>
-          </div>
-        </div>
-      </div>
-      <div class="flex flex-row py-4 px-2 items-center border-2 text-black" *ngFor="let message of messages">
-
-            {{ message.ownerOfMessage.login}} said: {{ message.text }}
-
-      </div>
-      <div class="flex flex-row py-4 px-2 items-center border-2 text-black"
-        *ngFor="let chatMessage of webSocketService.chatMessages" >
-        <span class="text-black">
-       {{chatMessage.name!}}  said: {{chatMessage.message}}</span>
-      </div>
-
-      <form (ngSubmit)="sendMessage!(sendForm)" #sendForm ="ngForm">
-        <div class="py-5">
-          <input
-            class="w-full bg-gray-300 py-5 px-3 rounded-xl"
-            type="text"
-            name="message"
-            placeholder="type your message here..."
-            ngModel
-          />
-        </div>
-      <button type="submit" class="border-2 bg-info bg-opacity-25" > SEND MESSAGE </button>
-      </form>
+    <div class="flex flex-row py-2 px-1 border-b-2">
+      Chat For All Users
     </div>
   </div>
+  <div class="flex flex-row py-4 px-2 border-2 text-black" *ngFor="let message of messages">
+
+    {{ message.ownerOfMessage.login}} said: {{ message.text }}
+
+  </div>
+  <div class="flex flex-row py-4 px-2 border-2 text-black"
+       *ngFor="let chatMessage of webSocketService.chatMessages">
+    {{chatMessage.name!}}  said: {{chatMessage.message}}
+  </div>
+
+  <form (ngSubmit)="sendMessage!(sendForm)" #sendForm="ngForm">
+    <input
+      class="w-full bg-gray-300 py-5 px-3 rounded-xl"
+      type="text"
+      name="message"
+      placeholder="type your message here..."
+      ngModel
+    />
+    <div class="flex justify-center">
+      <button
+        type="submit"
+        class="bg-amber-700 text-white font-bold py-2 px-4 rounded display-2 mx-auto">
+        SEND MESSAGE
+      </button>
+    </div>
+  </form>
 </div>
 
 
